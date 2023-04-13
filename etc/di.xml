@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="DeveloperHub\HeroBannerSlider\Api\Data\HeroBannerInterface"
+                type="DeveloperHub\HeroBannerSlider\Model\HeroBanner"/>
+    <preference for="DeveloperHub\HeroBannerSlider\Api\HeroBannerRepositoryInterface"
+                type="DeveloperHub\HeroBannerSlider\Model\Repository\HeroBannerRepository"/>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="DeveloperHub\HeroBannerSlider\Api\Data\HeroBannerInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">developerhub_herobanner</item>
+                    <item name="identifierField" xsi:type="string">banner_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="DeveloperHub\HeroBannerSlider\Api\Data\HeroBannerInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner\Relation\Store\ReadHandler</item>
+                        <item name="customerGroupReader" xsi:type="string">DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner\Relation\CustomerGroup\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner\Relation\Store\SaveHandler</item>
+                        <item name="customerGroupCreator" xsi:type="string">DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner\Relation\CustomerGroup\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner\Relation\Store\SaveHandler</item>
+                        <item name="customerGroupUpdater" xsi:type="string">DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner\Relation\CustomerGroup\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="DeveloperHub\HeroBannerSlider\Api\Data\HeroBannerInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="herobanner_listing_data_source" xsi:type="string">DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">developerhub_herobanner</argument>
+            <argument name="resourceModel" xsi:type="string">DeveloperHub\HeroBannerSlider\Model\ResourceModel\HeroBanner</argument>
+        </arguments>
+    </virtualType>
+</config>

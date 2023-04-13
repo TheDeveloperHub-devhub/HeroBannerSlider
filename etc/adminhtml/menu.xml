@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DeveloperHub_HeroBannerSlider::menu"
+             title="Hero Banner Slider"
+             module="DeveloperHub_HeroBannerSlider"
+             sortOrder="10"
+             resource="DeveloperHub_HeroBannerSlider::manage"
+             parent="DeveloperHub_Core::developerhub"
+        />
+        <add id="DeveloperHub_HeroBannerSlider::manage"
+             title="Manage Banner Sliders"
+             module="DeveloperHub_HeroBannerSlider"
+             sortOrder="20"
+             action="developerhub_herobanner/index/index"
+             resource="DeveloperHub_HeroBannerSlider::manage"
+             parent="DeveloperHub_HeroBannerSlider::menu"
+        />
+        <add id="DeveloperHub_HeroBannerSlider::config"
+             title="Banner Slider Configuration"
+             module="DeveloperHub_HeroBannerSlider"
+             sortOrder="30"
+             action="admin/system_config/edit/section/developerhub_herobannerslider/"
+             resource="DeveloperHub_HeroBannerSlider::config"
+             parent="DeveloperHub_HeroBannerSlider::menu"
+        />
+    </menu>
+</config>

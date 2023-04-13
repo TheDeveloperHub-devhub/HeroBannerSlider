@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">herobanner_form.herobanner_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back">
+                <url path="*/*/"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="save">
+                <url path="*/*/save"/>
+                <class>primary</class>
+                <label translate="true">Save</label>
+            </button>
+        </buttons>
+        <namespace>herobanner_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>herobanner_form.herobanner_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="herobanner_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="DeveloperHub\HeroBannerSlider\Model\HeroBanner\DataProvider" name="herobanner_form_data_source">
+            <settings>
+                <requestFieldName>banner_id</requestFieldName>
+                <primaryFieldName>banner_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Banner Information</label>
+            <collapsible>false</collapsible>
+            <opened>true</opened>
+        </settings>
+        <field name="banner_type" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">hero_banner</item>
+                    <item name="dataScope" xsi:type="string">banner_type</item>
+                    <item name="options" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="label" xsi:type="string">Image</item>
+                            <item name="value" xsi:type="string">image</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="label" xsi:type="string">Video</item>
+                            <item name="value" xsi:type="string">video</item>
+                        </item>
+                        <item name="2" xsi:type="array">
+                            <item name="label" xsi:type="string">Youtube</item>
+                            <item name="value" xsi:type="string">youtube</item>
+                        </item>
+                        <item name="3" xsi:type="array">
+                            <item name="label" xsi:type="string">Vimeo</item>
+                            <item name="value" xsi:type="string">vimeo</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>image</value>
+                            <actions>
+                                <action name="0">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_desktop_view_image
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_mobile_view_image
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="2">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video_thumb_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_youtube
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video_autoplay
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="5">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_vimeo
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="6">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.call_to_action
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="7">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>video</value>
+                            <actions>
+                                <action name="0">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_desktop_view_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_mobile_view_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video_thumb_image
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="3">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_youtube
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video_autoplay
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="5">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_vimeo
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="6">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.call_to_action
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="7">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="2">
+                            <value>youtube</value>
+                            <actions>
+                                <action name="0">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_desktop_view_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_mobile_view_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video_thumb_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_youtube
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="4">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video_autoplay
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="5">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_vimeo
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="6">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.call_to_action
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="7">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="3">
+                            <value>vimeo</value>
+                            <actions>
+                                <action name="0">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_desktop_view_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_mobile_view_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video_thumb_image
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_youtube
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video_autoplay
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="5">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_vimeo
+                                    </target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="6">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.call_to_action
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="7">
+                                    <target>
+                                        herobanner_form.herobanner_form.general.banner_video
+                                    </target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+        </field>
+        <field name="banner_video" sortOrder="50" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">hero_banner</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/uploader</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Choose Video</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="developerhub_herobanner/index/videoupload"/>
+                        </uploaderConfig>
+                        <previewTmpl>DeveloperHub_HeroBannerSlider/image-preview</previewTmpl>
+                        <allowedExtensions>mp4 mov</allowedExtensions>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+        <field name="banner_video_thumb_image" sortOrder="40" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">hero_banner</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Video Thumbnail Image</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="developerhub_herobanner/index/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>DeveloperHub_HeroBannerSlider/image-preview</previewTmpl>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+        <field name="banner_desktop_view_image" sortOrder="40" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">hero_banner</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Banner Desktop View Image</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="developerhub_herobanner/index/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>DeveloperHub_HeroBannerSlider/image-preview</previewTmpl>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+        <field name="banner_mobile_view_image" sortOrder="50" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">hero_banner</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Banner Mobile View Image</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="developerhub_herobanner/index/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>DeveloperHub_HeroBannerSlider/image-preview</previewTmpl>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+        <field name="banner_youtube" sortOrder="70" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Youtube</label>
+                <dataScope>banner_youtube</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="banner_video_autoplay" sortOrder="80" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Autoplay</label>
+                <dataScope>banner_video_autoplay</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="banner_vimeo" sortOrder="70" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Vimeo</label>
+                <dataScope>banner_vimeo</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="call_to_action" sortOrder="70" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Banner Link</label>
+                <dataScope>call_to_action</dataScope>
+            </settings>
+        </field>
+        <field name="banner_title" sortOrder="90" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Banner Title</label>
+                <dataScope>banner_title</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="customer_group_id" sortOrder="100" formElement="multiselect">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label translate="true">Customer Groups</label>
+                <dataScope>customer_group_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="DeveloperHub\HeroBannerSlider\Model\Customer\CustomerGroupsOptionsProvider"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="store_id" sortOrder="110" formElement="multiselect">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label translate="true">Store Views</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Store\Model\System\Store"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="start_time" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">hero_banner</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Start Time</label>
+                <visible>true</visible>
+                <dataScope>start_time</dataScope>
+            </settings>
+        </field>
+        <field name="end_time" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">hero_banner</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">End Time</label>
+                <visible>true</visible>
+                <dataScope>end_time</dataScope>
+            </settings>
+        </field>
+        <field name="position" sortOrder="140" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Position</label>
+                <dataScope>position</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="is_active" sortOrder="160" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <dataScope>is_active</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="number">1</item>
+                                <item name="label" xsi:type="string" translate="true">Enabled</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="number">0</item>
+                                <item name="label" xsi:type="string" translate="true">Disabled</item>
+                            </option>
+                        </options>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

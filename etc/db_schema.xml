@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="developerhub_herobanner" resource="default" engine="innodb"
+           comment="DeveloperHub Hero Banner">
+        <column xsi:type="smallint" name="banner_id" nullable="false" identity="true" comment="Banner ID"/>
+        <column xsi:type="text" name="banner_title" nullable="false" comment="Banner Title"/>
+        <column xsi:type="text" name="banner_description" comment="Banner Descriptionn"/>
+        <column xsi:type="text" name="banner_type" nullable="false" comment="Banner Type"/>
+        <column xsi:type="text" name="banner_desktop_view_image" nullable="true" comment="Banner Desktop View Image"/>
+        <column xsi:type="text" name="banner_mobile_view_image" nullable="true" comment="Banner Mobile View Image"/>
+        <column xsi:type="text" name="banner_video" comment="Banner video"/>
+        <column xsi:type="text" name="banner_video_thumb_image" nullable="true" comment="Banner Video thumbnail"/>
+        <column xsi:type="text" name="banner_youtube" comment="Banner youtube"/>
+        <column xsi:type="smallint" name="banner_video_autoplay" comment="Banner video autoplay"/>
+        <column xsi:type="text" name="banner_vimeo" nullable="true" comment="Banner Vimeo"/>
+        <column xsi:type="datetime" name="start_time" nullable="true" comment="Banner start time"/>
+        <column xsi:type="datetime" name="end_time" nullable="true" comment="Banner end time"/>
+        <column xsi:type="text" name="label_button_text" nullable="true" comment="Banner Label Button Text"/>
+        <column xsi:type="text" name="call_to_action" nullable="true" comment="Banner Call to Action"/>
+        <column xsi:type="int" name="position" nullable="false" comment="Banner Position in Slider"/>
+        <column xsi:type="smallint" name="is_active" nullable="false" default="1" comment="Is Banner Active?"/>
+        <column xsi:type="datetime" name="created_at" comment="Hero banner Created At Time"/>
+        <column xsi:type="datetime" name="updated_at" comment="Hero banner Updated At Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="banner_id"/>
+        </constraint>
+        <index referenceId="DEVELOPERHUB_HEROBANNER_BANNER_ID" indexType="btree">
+            <column name="banner_id"/>
+        </index>
+        <index referenceId="DEVELOPERHUB_HEROBANNER_BANNER_TITLE" indexType="fulltext">
+            <column name="banner_title"/>
+        </index>
+    </table>
+    <table name="developerhub_herobanner_store" resource="default" engine="innodb"
+           comment="DeveloperHub Hero Banner Store">
+        <column xsi:type="smallint" name="banner_id" nullable="false" identity="false"
+                comment="Banner ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false"
+                identity="false" comment="Banner Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="banner_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="FK_74377AAF175229EEA158C52380D55E48"
+                    table="developerhub_herobanner_store" column="banner_id"
+                    referenceTable="developerhub_herobanner" referenceColumn="banner_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+                    referenceId="DEVELOPERHUB_HEROBANNER_STORE_STORE_ID_STORE_STORE_ID"
+                    table="developerhub_herobanner_store" column="store_id"
+                    referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="DEVELOPERHUB_HEROBANNER_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="developerhub_herobanner_customer_group" resource="default" engine="innodb"
+           comment="DeveloperHub Hero Banner Customer Group">
+        <column xsi:type="smallint" name="banner_id" nullable="false" identity="false" comment="Banner ID"/>
+        <column xsi:type="int" name="customer_group_id" unsigned="true" nullable="false"
+                comment="Customer Group ID"/>
+        <index referenceId="DEVELOPERHUB_HEROBANNER_CUSTOMER_GROUP_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <constraint xsi:type="foreign"
+                    referenceId="FK_35C554664D138105232A0F3EE8BFD549"
+                    table="developerhub_herobanner_customer_group" column="banner_id"
+                    referenceTable="developerhub_herobanner" referenceColumn="banner_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+                    referenceId="FK_9D2D409777950D64D77F9746715AAD52"
+                    table="developerhub_herobanner_customer_group" column="customer_group_id"
+                    referenceTable="customer_group" referenceColumn="customer_group_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="banner_id"/>
+            <column name="customer_group_id"/>
+        </constraint>
+    </table>
+</schema>

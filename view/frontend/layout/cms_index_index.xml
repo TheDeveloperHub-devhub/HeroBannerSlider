@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="DeveloperHub\HeroBannerSlider\Block\HeroBanner"
+                   name="banner.view"
+                   before="main.content"
+                   template="DeveloperHub_HeroBannerSlider::banner.phtml"
+                   ifconfig="developerhub_herobannerslider/general/enable"
+            />
+        </referenceContainer>
+    </body>
+</page>

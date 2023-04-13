@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="DeveloperHubHeroBannerImageUploader" type="DeveloperHub\HeroBannerSlider\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">DeveloperHub\HeroBannerSlider\Model\HeroBanner\DataProvider::FILE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">DeveloperHub\HeroBannerSlider\Model\HeroBanner\DataProvider::FILE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="DeveloperHub\HeroBannerSlider\Controller\Adminhtml\Index\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">DeveloperHubHeroBannerImageUploader</argument>
+        </arguments>
+    </type>
+    <virtualType name="DeveloperHubHeroBannerVideoUploader" type="DeveloperHub\HeroBannerSlider\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">DeveloperHub\HeroBannerSlider\Model\HeroBanner\DataProvider::FILE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">DeveloperHub\HeroBannerSlider\Model\HeroBanner\DataProvider::FILE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="mp4" xsi:type="string">mp4</item>
+                <item name="mov" xsi:type="string">mov</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="DeveloperHub\HeroBannerSlider\Controller\Adminhtml\Index\VideoUpload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">DeveloperHubHeroBannerVideoUploader</argument>
+        </arguments>
+    </type>
+    <virtualType name="DeveloperHubHeroBannerFileUploader" type="DeveloperHub\HeroBannerSlider\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">DeveloperHub\HeroBannerSlider\Model\HeroBanner\DataProvider::FILE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">DeveloperHub\HeroBannerSlider\Model\HeroBanner\DataProvider::FILE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="mp4" xsi:type="string">mp4</item>
+                <item name="mov" xsi:type="string">mov</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="DeveloperHub\HeroBannerSlider\Controller\Adminhtml\Index\Save">
+        <arguments>
+            <argument name="uploader" xsi:type="object">DeveloperHubHeroBannerFileUploader</argument>
+        </arguments>
+    </type>
+    <type name="DeveloperHub\HeroBannerSlider\Model\HeroBanner\DataProvider">
+        <arguments>
+            <argument name="uploader" xsi:type="object">DeveloperHubHeroBannerFileUploader</argument>
+        </arguments>
+    </type>
+</config>

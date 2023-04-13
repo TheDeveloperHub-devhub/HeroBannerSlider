@@ -1,0 +1,94 @@
+<?php
+
+use Magento\Framework\Escaper;
+use DeveloperHub\HeroBannerSlider\Block\HeroBanner;
+
+/**
+ * @var Escaper $escaper
+ * @var HeroBanner $block
+ */
+
+if (!empty($block->getBanner())): ?>
+    <?php $styleVar ='';
+    if ($block->getConfig('developerhub_herobannerslider/advance/left_padding') !='') {
+        $styleVar .= "padding-left :" . $block->getConfig('developerhub_herobannerslider/advance/left_padding') . ";";
+    }
+    if ($block->getConfig('developerhub_herobannerslider/advance/right_padding') !='') {
+        $styleVar .= "padding-right :" . $block->getConfig('developerhub_herobannerslider/advance/right_padding') . ";";
+    } ?>
+    <div class="developerhub-herobanner-slider" id="herobanner-slider" style="<?php echo $styleVar; ?>">
+        <div class="banner-slider">
+            <?php  foreach ($block->getBanner() as $banner): ?>
+                <div class="swiper-slide">
+                    <?php if ($banner->getBannerType() == "image"):?>
+                        <?php if ($banner->getCallToAction() != ""): ?>
+                            <a href="<?= $escaper->escapeHtml(($banner->getCallToAction() ? $banner->getCallToAction() : '#')) ?>" target="_blank">
+                                <div class="image-desktop">
+                                    <img src="<?= $escaper->escapeHtml($block->getMediaPath($banner->getBannerDesktopViewImage()))
+                                    ?>" alt="<?= /* @noEscape */ $banner->getBannerTitle() ?: "Banner Slider" ?>">
+                                </div>
+                                <div class="image-mobile">
+                                    <img src="<?= $escaper->escapeHtml($block->getMediaPath($banner->getBannerMobileViewImage()))
+                                    ?>" alt="<?= /* @noEscape */ $banner->getBannerTitle() ?: "Banner Slider" ?>">
+                                </div>
+                            </a>
+                        <?php else: ?>
+                            <div class="image-desktop">
+                                <img src="<?= $escaper->escapeHtml($block->getMediaPath($banner->getBannerDesktopViewImage()))
+                                ?>" alt="<?= /* @noEscape */ $banner->getBannerTitle() ?: "Banner Slider" ?>">
+                            </div>
+                            <div class="image-mobile">
+                                <img src="<?= $escaper->escapeHtml($block->getMediaPath($banner->getBannerMobileViewImage()))
+                                ?>" alt="<?= /* @noEscape */ $banner->getBannerTitle() ?: "Banner Slider" ?>">
+                            </div>
+                        <?php endif;?>
+                    <?php endif;?>
+                    <?php if ($banner->getBannerType() == "video"):?>
+                        <div class="video-thumb">
+                            <video
+                                controls
+                                <?= $banner->getBannerVideoThumbImage() ? "poster='" . $block->getMediaPath($banner->getBannerVideoThumbImage()) . "'" : '' ?>
+                                <?= $banner->getBannerVideoAutoplay() ? "autoplay" : "" ?>
+                                muted
+                                loop>
+                                <source src="<?= $escaper->escapeHtml($block->getMediaPath($banner->getBannerVideo())) ?>" type="video/mp4">
+                            </video>
+                        </div>
+                    <?php endif;?>
+                    <?php if ($banner->getBannerType() == "youtube"):?>
+                        <div class="youtube-thumb">
+                            <iframe src="https://www.youtube.com/embed/<?= $escaper->escapeUrl($banner->getBannerYoutube()) ?>?controls=0&rel=0<?php if ($banner->getBannerVideoAutoplay()) {
+                                    echo "&autoplay=1";
+                                } else {
+                                    echo "&autoplay=0";
+                                } ?>&modestbranding=1&disablekb=1"
+                                <?php if ($banner->getBannerVideoAutoplay()) {
+                                    echo "allow='autoplay;'";
+                                } ?> frameborder="0" allowfullscreen>
+                            </iframe>
+                        </div>
+                    <?php endif;?>
+                    <?php if ($banner->getBannerType() == "vimeo"):?>
+                        <iframe src="https://player.vimeo.com/video/<?= $escaper->escapeUrl($banner->getBannerVimeo()) ?>?&byline=0" allow="autoplay; fullscreen; picture-in-picture"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <div class="vimeo-wrapper">
+                        </div>
+                    <?php endif;?>
+                </div>
+            <?php endforeach;  ?>
+        </div>
+        <div class="banner-slider-nav">
+            <a class="prev" href="#"></a>
+            <a class="next" href="#"></a>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "DeveloperHub_HeroBannerSlider/js/banner-slider": {
+                "autoplay": "<?= /* @noEscape */ $block->getConfig('developerhub_herobannerslider/advance/auto_rotation'); ?>",
+                "autoplay_speed": "<?= /* @noEscape */ $block->getConfig('developerhub_herobannerslider/advance/auto_rotation_speed'); ?>"
+            }
+        }
+    }
+    </script>
+<?php endif; ?>
