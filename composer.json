@@ -1,9 +1,9 @@
 {
-    "name": "developerhub/hero-banner-slider",
+    "name": "devhub/hero-banner-slider",
     "description": "Adds a banners slider on Home Page.",
     "require": {
         "php": ">=7.1.0",
-        "developerhub/core": "1.0.*"
+        "devhub/core": "1.0.*"
     },
     "type":"magento2-module",
     "version": "1.0.0",
