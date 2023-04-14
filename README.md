@@ -14,7 +14,7 @@
 
 1. Please run the following command
 ```shell
-composer require developerhub/hero-banner-slider
+composer require devhub/hero-banner-slider
 ```
 
 2. Update the composer if required
